@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/layout/Header';
-import Home from './components/home/Home';
+import Routes from './Routes';
 
 class App extends Component {
 
@@ -10,9 +10,8 @@ class App extends Component {
 		return(
 			<Router>
 				<Header/>
-				<Switch>
-					<Route path="/" component={Home}/>
-				</Switch>
+				<Routes/>
+				{/* FOOTER */}
 			</Router>
 		);
 	}

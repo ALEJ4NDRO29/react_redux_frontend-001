@@ -6,7 +6,8 @@ class Header extends Component {
     render() {
         return (
             <header>
-                <Link to="/">Home</Link>
+                <Link to="/">Home</Link> {' '}
+                <Link to="/test">Test</Link>
             </header>
         );
     }
