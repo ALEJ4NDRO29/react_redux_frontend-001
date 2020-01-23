@@ -7,10 +7,10 @@ class HotelPreview extends Component {
             <Card>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
-                    <Card.Title>{props.hotel.name}</Card.Title>
+                    <Card.Title>{this.props.hotel.name}</Card.Title>
                     <Card.Text>
-                        {props.hotel.starts} * <br />
-                        {props.hotel.location}
+                        {this.props.hotel.starts} * <br />
+                        {this.props.hotel.location}
                     </Card.Text>
                 </Card.Body>
             </Card>

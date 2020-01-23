@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HOME_PAGE_UNLOADED, HOME_PAGE_LOADED } from '../../constants';
 import agent from '../../agent';
+import HotelList from '../hotels/HotelsList'
 
 
 const mapDispatchToProps = dispatch => {
@@ -18,11 +19,11 @@ class Home extends Component {
     }
 
     render() {
-
+        var hoteles = [{"name":"Hotel 1","stars":"4","location":"Hotel 1 Loc"},{"name":"Hotel 2","stars":"5","location":"Hotel 2 Loc"}]
         return (
             <div>
                 <h1>Listado de hoteles:</h1>
-            // Cargar listado aquí
+                <HotelsList hotels={hoteles}/>
             </div>
         );
     }
