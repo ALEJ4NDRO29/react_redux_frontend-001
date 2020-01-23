@@ -11,6 +11,8 @@ const tokenPlugin = req => {
   }
 }
 
+const responseBody = res => res.body;
+
 const requests = {
     del: url =>
       superagent.del(`${API_URL}${url}`).use(tokenPlugin).then(responseBody),
