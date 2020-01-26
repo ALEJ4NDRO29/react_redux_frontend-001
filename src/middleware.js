@@ -5,7 +5,7 @@ import {
     LOGIN,
     LOGOUT,
     REGISTER
-} from './constants/actionTypes';
+} from './constants';
 
 const promiseMiddleware = store => next => action => {
     if (isPromise(action.payload)) {
