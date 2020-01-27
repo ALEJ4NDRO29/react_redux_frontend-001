@@ -5,14 +5,14 @@ import React from 'react';
 const HotelList = props => {
   if (!props.hotels) {
     return (
-      <div className="article-preview">Loading...</div>
+      <div></div>
     );
   }
 
   if (props.hotels.length === 0) {
     return (
       <div className="article-preview">
-        No articles are here... yet.
+        No hotels registered. You are a poor.
       </div>
     );
   }
@@ -23,7 +23,6 @@ const HotelList = props => {
         props.hotels.map(hotel => {
           return (
             <div>
-              {hotel.name}
               <HotelPreview  hotel={hotel} key={hotel.id} />
             </div>
           );

@@ -10,6 +10,8 @@ import {
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER
 } from '../../constants/actionTypes';
+import HotelsList from '../hotels/HotelsList';
+import Header from '../Header';
 
 const Promise = global.Promise;
 
@@ -20,12 +22,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClickTag: (tag, pager, payload) =>
-    dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
   onLoad: (payload) =>
     dispatch({ type: HOME_PAGE_LOADED, payload }),
-  onUnload: () =>
-    dispatch({  type: HOME_PAGE_UNLOADED })
 });
 
 class Home extends React.Component {
@@ -40,19 +38,9 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner token={this.props.token} appName={this.props.appName} />
         <div className="container page">
-          <div className="row">
-            <MainView />
-            <div className="col-md-3">
-              <div className="sidebar">
-                <p>Popular Tags</p>
-                {console.log(this.props.hotels)}
-                <Hotels                
+                <HotelsList               
                   hotels={this.props.hotels}/>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     );
