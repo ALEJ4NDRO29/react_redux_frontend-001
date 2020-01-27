@@ -11,8 +11,7 @@ export default async function (state = {}, action) {
         case GET_HOTELS_SUCCESS:
             return {
                 ...state,
-                // hotels: [{ "name": "Hotel 1", "stars": "4", "location": "Hotel 1 Loc" }, { "name": "Hotel 2", "stars": "5", "location": "Hotel 2 Loc" }]
-                hotels: action.payload
+                hotels: action.payload[0],
             };
 
         case GET_HOTELS_FAILURE:
