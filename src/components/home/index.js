@@ -29,9 +29,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Home extends React.Component {
-  UNSAFE_componentWillMount() {
-
-    // console.log(agent.Projects.getAll())
+  componentDidMount() {
     this.props.onLoad(Promise.all([agent.Hotels.getAll()]));
   }
 
@@ -42,27 +40,20 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-
         <Banner token={this.props.token} appName={this.props.appName} />
-
         <div className="container page">
           <div className="row">
             <MainView />
-
             <div className="col-md-3">
               <div className="sidebar">
-
                 <p>Popular Tags</p>
-
                 {console.log(this.props.hotels)}
                 <Hotels                
                   hotels={this.props.hotels}/>
-
               </div>
             </div>
           </div>
         </div>
-
       </div>
     );
   }

@@ -7,13 +7,12 @@ const Hotels = props => {
       <div className="tag-list">
         {
           hotels.map(hotel => {
-
+            
             return (
               <p
-                // href=""
-                // className="tag-default tag-pill"
-                // key={hotel.name}
-                >
+                href=""
+                className="tag-default tag-pill"
+                key={hotel.name}>
                 {hotel.name}
               </p>
             );

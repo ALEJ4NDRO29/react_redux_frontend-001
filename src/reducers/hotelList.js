@@ -1,6 +1,4 @@
-import {
-    HOME_PAGE_LOADED,
-  } from '../constants/actionTypes';
+import { HOME_PAGE_LOADED } from '../constants/actionTypes';
   
   export default (state = {}, action) => {
     switch (action.type) {
