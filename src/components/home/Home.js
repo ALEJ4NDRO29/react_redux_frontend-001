@@ -24,9 +24,9 @@ const mapDispatchToProps = (dispatch) => {
 
 class Home extends Component {
 
-    async componentDidMount() {
-        // var hotels = Promise.all([agent.Hotels.getAll() ]);
-        var hotels = await agent.Hotels.getAll();
+    componentDidMount() {
+        var hotels = Promise.all([agent.Hotels.getAll() ]);
+        // var hotels = await agent.Hotels.getAll();
         console.log(hotels);
         this.props.onload(hotels);
     }
