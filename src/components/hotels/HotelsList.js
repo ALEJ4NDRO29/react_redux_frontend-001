@@ -1,21 +1,36 @@
-import React, { Component } from 'react';
 import HotelPreview from './HotelPreview';
+// import ListPagination from './ListPagination';
+import React from 'react';
 
+const HotelList = props => {
+  if (!props.hotels) {
+    return (
+      <div className="article-preview">Loading...</div>
+    );
+  }
 
-class HotelsList extends Component {
-    render() {
-        return (
+  if (props.hotels.length === 0) {
+    return (
+      <div className="article-preview">
+        No articles are here... yet.
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {
+        props.hotels.map(hotel => {
+          return (
             <div>
-                {
-                    this.props.hotels.map(hotel, index => {
-                        return (
-                            <HotelPreview hotel={hotel} key={index}/>
-                        );
-                    })
-                }
+              {hotel.name}
+              <HotelPreview  hotel={hotel} key={hotel.id} />
             </div>
-        );
-    }
-}
+          );
+        })
+      }
+    </div>
+  );
+};
 
-export default HotelsList;
+export default HotelList;
