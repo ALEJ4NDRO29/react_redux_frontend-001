@@ -17,7 +17,7 @@ const valuesTest =
     [{ "name": "Hotel 1", "stars": "4", "location": "Hotel 1 Loc" }, { "name": "Hotel 2", "stars": "5", "location": "Hotel 2 Loc" }];
 const mapDispatchToProps = (dispatch) => {
     return {   // agent.Hotels.getAll()
-        onload: (payload) => dispatch({ type: GET_HOTELS_SUCCESS,a:0 , payload })
+        onload: (payload) => dispatch({ type: GET_HOTELS_SUCCESS, payload })
     }
     // return dispatch({ type: GET_HOTELS_SUCCESS, payload: valuesTest })
 };
@@ -25,15 +25,17 @@ const mapDispatchToProps = (dispatch) => {
 class Home extends Component {
 
     componentDidMount() {
-        var hotels = Promise.all([agent.Hotels.getAll() ]);
+        // agent.Hotels.getAll().then(function (hotels) {
+        //     console.log(hotels);
+        // });
         // var hotels = await agent.Hotels.getAll();
-        console.log(hotels);
-        this.props.onload(hotels);
+        // console.log(hotels);
+        this.props.onload(valuesTest);
     }
 
     render() {
-        // console.log('asdasddsasaddsa');
-        // console.log(this.props.hotels);
+        console.log('Render');
+        console.log(this.props.hotels);
         // var hotels = [];
         // (async () => {
         //     console.log('KK');
