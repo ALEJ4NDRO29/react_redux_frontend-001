@@ -1,17 +1,11 @@
-import Banner from './Banner';
-import MainView from './MainView';
 import React from 'react';
 // import Tags from './Tags';
-import Hotels from './Hotels';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import {
   HOME_PAGE_LOADED,
-  HOME_PAGE_UNLOADED,
-  APPLY_TAG_FILTER
 } from '../../constants/actionTypes';
 import HotelsList from '../hotels/HotelsList';
-import Header from '../Header';
 
 const Promise = global.Promise;
 
