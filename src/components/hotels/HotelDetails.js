@@ -2,6 +2,7 @@ import React from 'react';
 // import Tags from './Tags';
 import agent from '../../agent';
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
 import {
     HOTEL_DETAILS_LOADED,
 } from '../../constants/actionTypes';
@@ -9,16 +10,12 @@ import {
 const Promise = global.Promise;
 
 const mapStateToProps = state => {
-    console.log('caca state');
-    console.log(state);
-    
+    console.log('axant', state);
     return {
-
-        ...state,
-      hotel: state.hotel
+      ...state,
+      hotel: state.hotelList.hotel
     }
-  // appName: state.common.appName,
-  // token: state.common.token,
+
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -36,9 +33,14 @@ class HotelDetails extends React.Component {
   }
 
   render() {
+    if(!this.props.hotel) {
+      return (<Spinner animation="grow" />)
+    }
     return (
       <div>
-        {this.props.hotel}
+        <p>{this.props.hotel.name}</p>
+        <p>{this.props.hotel.stars}</p>
+        <p>{this.props.hotel.location}</p>
       </div>
     );
   }

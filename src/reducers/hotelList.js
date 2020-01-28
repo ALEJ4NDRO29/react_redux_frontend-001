@@ -8,10 +8,12 @@ import { HOME_PAGE_LOADED, HOTEL_DETAILS_LOADED } from '../constants/actionTypes
           hotels: action.payload[0],
         };
       case HOTEL_DETAILS_LOADED:
+        
         return {
           ...state,
           hotel: action.payload[0],
         };
+        
       default:
         return state;
     }
