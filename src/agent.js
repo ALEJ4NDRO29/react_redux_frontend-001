@@ -1,10 +1,10 @@
 import superagentPromise from 'superagent-promise';
 import _superagent from 'superagent';
+import { API_URL } from './constants';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
 // const API_ROOT = 'https://conduit.productionready.io/api';
-const API_ROOT = 'http://0.0.0.0:8000/hotels';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -18,13 +18,13 @@ const tokenPlugin = req => {
 
 const requests = {
   del: url =>
-    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
+    superagent.del(`${API_URL}${url}`).use(tokenPlugin).then(responseBody),
   get: url =>
-    superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody),
+    superagent.get(`${API_URL}${url}`).use(tokenPlugin).then(responseBody),
   put: (url, body) =>
-    superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
+    superagent.put(`${API_URL}${url}`, body).use(tokenPlugin).then(responseBody),
   post: (url, body) =>
-    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)
+    superagent.post(`${API_URL}${url}`, body).use(tokenPlugin).then(responseBody)
 };
 
 const Auth = {
@@ -39,8 +39,8 @@ const Auth = {
 };
 
 const Hotels = {
-  getAll: () => requests.get('/hotels'),
-  get: id => requests.get(`/hotels/${id}`)
+  getAll: () => requests.get('/hotels/hotels'),
+  get: id => requests.get(`/hotels/hotels/${id}`)
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
