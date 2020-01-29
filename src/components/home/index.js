@@ -1,15 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import Tags from './Tags';
 import agent from '../../agent';
-import { HOME_PAGE_LOADED } from '../../constants/actionTypes';
+import { connect } from 'react-redux';
+import {
+  HOME_PAGE_LOADED,
+} from '../../constants/actionTypes';
 import HotelsList from '../hotels/HotelsList';
 
 const Promise = global.Promise;
 
 const mapStateToProps = state => ({
   ...state.home,
-  // appName: state.common.appName,
-  // token: state.common.token,
 });
 
 const mapDispatchToProps = dispatch => ({

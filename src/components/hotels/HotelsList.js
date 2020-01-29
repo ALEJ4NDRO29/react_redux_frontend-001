@@ -22,8 +22,8 @@ const HotelList = props => {
       {
         props.hotels.map((hotel, index)  => {
           return (
-            <div key={index}>
-              <HotelPreview hotel={hotel} />
+            <div key={hotel.id}>
+              <HotelPreview  hotel={hotel}/>
             </div>
           );
         })
