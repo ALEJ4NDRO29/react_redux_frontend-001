@@ -7,6 +7,8 @@ import {
     HOTEL_DETAILS_LOADED,
 } from '../../constants/actionTypes';
 
+import '../../App.css';
+
 const Promise = global.Promise;
 
 const mapStateToProps = state => {
@@ -23,6 +25,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: HOTEL_DETAILS_LOADED, payload }),
 });
 
+
+
 class HotelDetails extends React.Component {
   componentDidMount() {
     this.props.onLoad(Promise.all([agent.Hotels.get(this.props.match.params.id)]));
@@ -34,7 +38,11 @@ class HotelDetails extends React.Component {
 
   render() {
     if(!this.props.hotel) {
-      return (<Spinner animation="grow" />)
+      return (
+        <div className="spinner-center">
+          <Spinner className="loadSpinner" animation="grow"/>
+        </div>
+      )
     }
     return (
       <div>
