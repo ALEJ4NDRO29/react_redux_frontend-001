@@ -16,7 +16,12 @@ class Register extends Component {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+
+                    <Form.Group>
+                        <Form.Label>Repeat password</Form.Label>
+                        <Form.Control type="password" placeholder="Repeat password" />
+                    </Form.Group>
+                    <Button variant="outline-dark" className="btn-block" type="submit">
                         Register
                     </Button>
                 </Form>
