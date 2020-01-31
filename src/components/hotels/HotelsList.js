@@ -1,15 +1,18 @@
 import HotelPreview from './HotelPreview';
 // import ListPagination from './ListPagination';
 import React from 'react';
+import { Spinner } from 'react-bootstrap';
 
 const HotelList = props => {
   if (!props.hotels) {
     return (
-      <div></div>
+      <div>
+        <Spinner className="loadSpinner" animation="grow" />
+      </div>
     );
   }
 
-  if (props.hotels.length === 0) {
+  if (props.hotels.results.length === 0) {
     return (
       <div className="article-preview">
         No hotels registered. You are a poor.
@@ -18,9 +21,10 @@ const HotelList = props => {
   }
 
   return (
+
     <div>
       {
-        props.hotels.map((hotel, index)  => {
+        props.hotels.results.map((hotel, index)  => {
           return (
             <div key={hotel.id}>
               <HotelPreview  hotel={hotel}/>

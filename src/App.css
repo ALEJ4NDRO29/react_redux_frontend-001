@@ -1,4 +1,4 @@
-    .App {
+.App {
     text-align: center;
 }
 
@@ -51,14 +51,14 @@
 
 @media screen and (orientation: portrait) {
     .loadSpinner {
-      height: 95vw;
-      width: 95vw;
-  }
+        height: 95vw;
+        width: 95vw;
+    }
 }
 
 @media screen and (orientation: landscape) {
     .loadSpinner {
-      height: 95vh;
-      width: 95vh;
-  }
+        height: 95vh;
+        width: 95vh;
+    }
 }

@@ -8,7 +8,8 @@ class Header extends Component {
             // TODO : Bootstrap nav
             <header>
                 <Link to="/">Home</Link> {' '}
-                <Link to="/test">Test</Link>
+                <Link to="/login">Login</Link> {' '}
+                <Link to="/register">Register</Link> {' '}
             </header>
         );
     }
