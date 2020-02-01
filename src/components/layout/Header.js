@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
 
 class Header extends Component {
 
     render() {
         return (
-            // TODO : Bootstrap nav
             <header>
-                <Link to="/">Home</Link> {' '}
-                <Link to="/login">Login</Link> {' '}
-                <Link to="/register">Register</Link> {' '}
+                <Navbar bg="dark" variant="dark">
+                    <Nav defaultActiveKey="/home" as="ul">
+                        <Nav.Item as="li">
+                            <Nav.Link>
+                                <Link to="/">Home</Link>
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item as="li">
+                            <Nav.Link>
+                                <Link to="/login">Login</Link>
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item as="li">
+                            <Nav.Link>
+                                <Link to="/register">Register</Link>
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                </Navbar>
             </header>
         );
     }

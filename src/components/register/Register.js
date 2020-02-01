@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { REGISTER } from "../../constants";
+import agent from "../../agent";
 
 
 const mapStateToProps = state => ({ ...state.auth });
 
 const mapDispatchToProps = dispatch => ({
-
+    onRegister: (action) => dispatch({type: REGISTER, action})
 })
 
 class Register extends Component {
@@ -32,8 +34,14 @@ class Register extends Component {
         e.preventDefault();
         if (this.state.password && this.state.password === this.state.password2) {
             console.log('OKOKOKOK');
+            var username = this.state.username;
+            var email = this.state.email;
+            var password = this.state.password;
+            
+            this.props.onRegister(agent.Auth.register({ username, email, password }));
         } else {
             console.log('INVALIDPASS');
+            // TODO : Toastr error
         }
     }
 
@@ -48,7 +56,8 @@ class Register extends Component {
                             onChange={this.handleChange}
                             name="username"
                             type="text"
-                            placeholder="Enter username" />
+                            placeholder="Enter username" 
+                            autoComplete="disabled"/>
                     </Form.Group>
 
                     <Form.Group>
@@ -57,7 +66,8 @@ class Register extends Component {
                             onChange={this.handleChange} 
                             name="email" 
                             type="email" 
-                            placeholder="Enter email" />
+                            placeholder="Enter email" 
+                            autoComplete="disabled"/>
                     </Form.Group>
 
                     <Form.Group>
