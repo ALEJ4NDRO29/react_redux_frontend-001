@@ -2,10 +2,8 @@ import React from 'react';
 // import Tags from './Tags';
 import agent from '../../agent';
 import { connect } from 'react-redux';
-import {
-  HOME_PAGE_LOADED,
-} from '../../constants/actionTypes';
 import HotelsList from '../hotels/HotelsList';
+import { HOME_PAGE_LOADED } from '../../constants';
 
 const Promise = global.Promise;
 

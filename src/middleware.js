@@ -1,11 +1,5 @@
 import agent from './agent';
-import {
-    ASYNC_START,
-    ASYNC_END,
-    LOGIN,
-    LOGOUT,
-    REGISTER
-} from './constants/actionTypes';
+import { ASYNC_START, ASYNC_END, REGISTER, LOGIN, LOGOUT } from './constants';
 
 const promiseMiddleware = store => next => action => {
     if (isPromise(action.payload)) {
@@ -16,9 +10,9 @@ const promiseMiddleware = store => next => action => {
 
         action.payload.then(
             res => {
-                const currentState = store.getState()
+                const currentState = store.getState();
                 if (!skipTracking && currentState.viewChangeCounter !== currentView) {
-                    return
+                    return;
                 }
                 console.log('RESULT', res);
                 action.payload = res;
@@ -26,9 +20,9 @@ const promiseMiddleware = store => next => action => {
                 store.dispatch(action);
             },
             error => {
-                const currentState = store.getState()
+                const currentState = store.getState();
                 if (!skipTracking && currentState.viewChangeCounter !== currentView) {
-                    return
+                    return;
                 }
                 console.log('ERROR', error);
                 action.error = true;
@@ -65,4 +59,4 @@ function isPromise(v) {
 }
 
 
-export { promiseMiddleware, localStorageMiddleware }
+export { promiseMiddleware, localStorageMiddleware };

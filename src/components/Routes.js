@@ -5,7 +5,7 @@ import HotelDetails from "./hotels/HotelDetails";
 import Login from "./login/Login";
 import Register from "./register/Register";
 import { connect } from "react-redux";
-import { APP_LOAD, REDIRECT } from "../constants/actionTypes";
+import { APP_LOAD, REDIRECT } from "../constants";
 import { push } from "react-router-redux";
 import agent from "../agent";
 import store from "../store";

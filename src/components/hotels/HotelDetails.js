@@ -3,11 +3,9 @@ import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
-import {
-    HOTEL_DETAILS_LOADED,
-} from '../../constants/actionTypes';
 
 import '../../App.css';
+import { HOTEL_DETAILS_LOADED } from '../../constants';
 
 const Promise = global.Promise;
 

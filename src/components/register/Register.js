@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
-import { REGISTER, REGISTER_PAGE_UNLOADED } from "../../constants/actionTypes";
 import agent from '../../agent';
 import { connect } from "react-redux";
+import { REGISTER, REGISTER_PAGE_UNLOADED } from "../../constants";
 
 const mapStateToProps = state => ({ 
     ...state.auth
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     onSubmit: (username, email, password) => {
       const payload = agent.Auth.register(username, email, password);
       dispatch({ type: REGISTER, payload })
