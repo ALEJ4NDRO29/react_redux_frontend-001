@@ -9,12 +9,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onChangeEmail: value =>
-      dispatch({ type: UPDATE_FIELD_AUTH, key: 'email', value }),
-    onChangePassword: value =>
-      dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
-    onChangeUsername: value =>
-      dispatch({ type: UPDATE_FIELD_AUTH, key: 'username', value }),
     onSubmit: (username, email, password) => {
       const payload = agent.Auth.register(username, email, password);
       dispatch({ type: REGISTER, payload })
@@ -24,39 +18,78 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Register extends Component {
-    constructor() {
-        super();
-        this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
-        this.changePassword = ev => this.props.onChangePassword(ev.target.value);
-        this.changeUsername = ev => this.props.onChangeUsername(ev.target.value);
-        this.submitForm = (username, email, password) => ev => {
-          ev.preventDefault();
-          this.props.onSubmit(username, email, password);
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            username: '',
+            email: '',
+            password: '',
+            password2: ''
         }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    UNSAFE_componentWillUnmount() {
-        this.props.onUnload();
+
+
+    onSubmit(e) {
+        e.preventDefault();
+        if (this.state.password && this.state.password === this.state.password2) {
+            console.log('OKOKOKOK');
+            var username = this.state.username;
+            var email = this.state.email;
+            var password = this.state.password;
+            
+            this.props.onRegister(agent.Auth.register({ username, email, password }));
+        } else {
+            console.log('INVALIDPASS');
+            // TODO : Toastr error
+        }
     }
 
     render() {
         return (
             <div>
                 <h1>Register</h1>
-                <Form>
+                <Form onSubmit={this.onSubmit}>
                     <Form.Group>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control
+                            onChange={this.handleChange}
+                            name="username"
+                            type="text"
+                            placeholder="Enter username" 
+                            autoComplete="disabled"/>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control 
+                            onChange={this.handleChange} 
+                            name="email" 
+                            type="email" 
+                            placeholder="Enter email" 
+                            autoComplete="disabled"/>
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control
+                            onChange={this.handleChange}
+                            name="password" 
+                            type="password" 
+                            placeholder="Password" />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Repeat password</Form.Label>
-                        <Form.Control type="password" placeholder="Repeat password" />
+                        <Form.Control 
+                            onChange={this.handleChange} 
+                            name="password2" 
+                            type="password" 
+                            placeholder="Repeat password" />
                     </Form.Group>
                     <Button variant="outline-dark" className="btn-block" type="submit">
                         Register
@@ -67,4 +100,4 @@ class Register extends Component {
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
