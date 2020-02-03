@@ -25,7 +25,8 @@ export default (state = defaultState, action) => {
                 currentUser: action.payload ? action.payload.user : null
             };
         case REDIRECT:
-            return { ...state, redirectTo: null };
+            debugger
+            return { ...state, redirectTo: '/' };
         case LOGOUT:
             return { ...state, redirectTo: '/', token: null, currentUser: null };
         case LOGIN:

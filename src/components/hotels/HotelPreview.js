@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Card } from "react-bootstrap";
 
 const HotelPreview = props => {
-  console.log(props);
-  
   return (
     <Card>
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}

@@ -10,20 +10,24 @@ class Header extends Component {
                 <Navbar bg="dark" variant="dark">
                     <Nav defaultActiveKey="/home" as="ul">
                         <Nav.Item as="li">
-                            <Nav.Link>
+                            {/* <Nav.Link> FIXME <a> inside <a> */}
                                 <Link to="/">Home</Link>
-                            </Nav.Link>
+                            {/* </Nav.Link> */}
                         </Nav.Item>
                         <Nav.Item as="li">
-                            <Nav.Link>
+                            {/* <Nav.Link> */}
                                 <Link to="/login">Login</Link>
-                            </Nav.Link>
+                            {/* </Nav.Link> */}
                         </Nav.Item>
                         <Nav.Item as="li">
-                            <Nav.Link>
+                            {/* <Nav.Link> */}
                                 <Link to="/register">Register</Link>
-                            </Nav.Link>
+                            {/* </Nav.Link> */}
                         </Nav.Item>
+                        <span className="text-right">
+                            {/* TODO : REDUX VALUE */}
+                            USERNAME
+                        </span>
                     </Nav>
                 </Navbar>
             </header>

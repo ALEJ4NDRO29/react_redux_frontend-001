@@ -1,56 +1,57 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { Route, Switch, withRouter } from "react-router-dom";
+import agent from "../agent";
+import { APP_LOAD, REDIRECT } from "../constants";
 import Home from "./home/index";
 import HotelDetails from "./hotels/HotelDetails";
 import Login from "./login/Login";
 import Register from "./register/Register";
-import { connect } from "react-redux";
-import { APP_LOAD, REDIRECT } from "../constants";
-import { push } from "react-router-redux";
-import agent from "../agent";
-import store from "../store";
 
-    const mapStateToProps = state => {
-        return {
-            appLoaded: state.common.appLoaded,
-            appName: state.common.appName,
-            currentUser: state.common.currentUser,
-            redirectTo: state.common.redirectTo
-        }
+const mapStateToProps = state => {
+    return {
+        appLoaded: state.common.appLoaded,
+        appName: state.common.appName,
+        currentUser: state.common.currentUser,
+        redirectTo: state.common.redirectTo
     };
-  
-    const mapDispatchToProps = dispatch => ({
-        onLoad: (payload, token) =>
-            dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
-        onRedirect: () =>
-            dispatch({ type: REDIRECT })
-    });
+};
+
+const mapDispatchToProps = dispatch => ({
+    onLoad: (payload, token) =>
+        dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
+    onRedirect: () =>
+        dispatch({ type: REDIRECT })
+});
 
 
 class Routes extends Component {
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.redirectTo) {
-          // this.context.router.replace(nextProps.redirectTo);
-          store.dispatch(push(nextProps.redirectTo));
-          this.props.onRedirect();
-        }
-    }
+    constructor(props){
+        super(props);
 
-    componentWillMount() {
         const token = window.localStorage.getItem('jwt');
         if (token) {
-          agent.setToken(token);
+            agent.setToken(token);
         }
     
         this.props.onLoad(token ? agent.Auth.current() : null, token);
     }
 
+
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.redirectTo !== this.props.redirectTo) {
+            this.props.history.push(nextProps.redirectTo);
+            return true;
+        }
+        return false;
+    }
+
     render() {
-        return(
+        return (
             <Switch>
                 <Route path="/test">Test</Route>
-                <Route path="/hotels/:id" component={HotelDetails}/>
+                <Route path="/hotels/:id" component={HotelDetails} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/" component={Home} />
@@ -59,4 +60,4 @@ class Routes extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Routes);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Routes));

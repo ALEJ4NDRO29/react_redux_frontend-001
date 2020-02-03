@@ -10,7 +10,6 @@ const Hotels = props => {
             
             return (
               <p
-                href=""
                 className="tag-default tag-pill"
                 key={hotel.name}>
                 {hotel.name}
