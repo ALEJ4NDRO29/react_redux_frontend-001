@@ -4,8 +4,48 @@ import Home from "./home/index";
 import HotelDetails from "./hotels/HotelDetails";
 import Login from "./login/Login";
 import Register from "./register/Register";
+import { connect } from "react-redux";
+import { APP_LOAD, REDIRECT } from "../constants/actionTypes";
+import { push } from "react-router-redux";
+import agent from "../agent";
+import store from "../store";
+
+    const mapStateToProps = state => {
+        return {
+            appLoaded: state.common.appLoaded,
+            appName: state.common.appName,
+            currentUser: state.common.currentUser,
+            redirectTo: state.common.redirectTo
+        }
+    };
+  
+    const mapDispatchToProps = dispatch => ({
+        onLoad: (payload, token) =>
+            dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
+        onRedirect: () =>
+            dispatch({ type: REDIRECT })
+    });
+
 
 class Routes extends Component {
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.redirectTo) {
+          // this.context.router.replace(nextProps.redirectTo);
+          store.dispatch(push(nextProps.redirectTo));
+          this.props.onRedirect();
+        }
+    }
+
+    componentWillMount() {
+        const token = window.localStorage.getItem('jwt');
+        if (token) {
+          agent.setToken(token);
+        }
+    
+        this.props.onLoad(token ? agent.Auth.current() : null, token);
+    }
+
     render() {
         return(
             <Switch>
@@ -19,4 +59,4 @@ class Routes extends Component {
     }
 }
 
-export default Routes;
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);
