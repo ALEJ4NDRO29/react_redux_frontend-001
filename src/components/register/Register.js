@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
-import { UPDATE_FIELD_AUTH, REGISTER, REGISTER_PAGE_UNLOADED } from "../../constants/actionTypes";
+import { REGISTER, REGISTER_PAGE_UNLOADED } from "../../constants/actionTypes";
 import agent from '../../agent';
 import { connect } from "react-redux";
 
@@ -32,7 +32,9 @@ class Register extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
 
     onSubmit(e) {
         e.preventDefault();
@@ -42,7 +44,7 @@ class Register extends Component {
             var email = this.state.email;
             var password = this.state.password;
             
-            this.props.onRegister(agent.Auth.register({ username, email, password }));
+            this.props.onSubmit(username, email, password);
         } else {
             console.log('INVALIDPASS');
             // TODO : Toastr error
@@ -55,7 +57,7 @@ class Register extends Component {
                 <h1>Register</h1>
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group>
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Username</Form.Label>
                         <Form.Control
                             onChange={this.handleChange}
                             name="username"
