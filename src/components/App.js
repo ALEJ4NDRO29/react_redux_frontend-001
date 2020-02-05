@@ -13,7 +13,7 @@ class App extends Component {
 				<Router>
 					<Header/>
 					<Routes/>
-					{/* FOOTER */}
+					{/* TODO: FOOTER */}
 				</Router>
 			</Container>
 		);

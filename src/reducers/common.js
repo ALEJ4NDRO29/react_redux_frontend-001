@@ -6,7 +6,8 @@ import {
     REGISTER,
     HOME_PAGE_UNLOADED,
     LOGIN_PAGE_UNLOADED,
-    REGISTER_PAGE_UNLOADED
+    REGISTER_PAGE_UNLOADED,
+    HEADER_LOADED
 } from '../constants';
   
     const defaultState = {
@@ -17,6 +18,7 @@ import {
   
 export default (state = defaultState, action) => {
     switch (action.type) {
+        case HEADER_LOADED:
         case APP_LOAD:
             return {
                 ...state,

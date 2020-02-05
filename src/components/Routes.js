@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, withRouter } from "react-router-dom";
 import agent from "../agent";
-import { APP_LOAD, REDIRECT } from "../constants";
+import { APP_LOAD, REDIRECT, JWT_STORAGE_KEY } from "../constants";
 import Home from "./home/index";
 import HotelDetails from "./hotels/HotelDetails";
 import Login from "./login/Login";
@@ -30,7 +30,7 @@ class Routes extends Component {
     constructor(props){
         super(props);
 
-        const token = window.localStorage.getItem('jwt');
+        const token = window.localStorage.getItem(JWT_STORAGE_KEY);
         if (token) {
             agent.setToken(token);
         }
@@ -40,6 +40,7 @@ class Routes extends Component {
 
 
     shouldComponentUpdate(nextProps) {
+        debugger
         if (nextProps.redirectTo !== this.props.redirectTo) {
             this.props.history.push(nextProps.redirectTo);
             return true;

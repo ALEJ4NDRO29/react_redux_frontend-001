@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Home extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.props.onLoad(Promise.all([agent.Hotels.getAll()]));
   }
 
@@ -30,8 +30,8 @@ class Home extends React.Component {
     return (
       <div className="home-page">
         <div className="container page">
-                <HotelsList               
-                  hotels={this.props.hotels}/>
+          <HotelsList               
+            hotels={this.props.hotels}/>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import agent from './agent';
-import { ASYNC_START, ASYNC_END, REGISTER, LOGIN, LOGOUT } from './constants';
+import { ASYNC_START, ASYNC_END, REGISTER, LOGIN, LOGOUT, APP_LOAD, JWT_STORAGE_KEY } from './constants';
 
 const promiseMiddleware = store => next => action => {
     if (isPromise(action.payload)) {
@@ -41,15 +41,37 @@ const promiseMiddleware = store => next => action => {
 };
 
 const localStorageMiddleware = store => next => action => {
-    if (action.type === REGISTER || action.type === LOGIN) {
-        if (!action.error) {
-            window.localStorage.setItem('jwt', action.payload.user.token);
-            agent.setToken(action.payload.user.token);
-        }
-    } else if (action.type === LOGOUT) {
-        window.localStorage.setItem('jwt', '');
-        agent.setToken(null);
+    switch (action.type) {
+        case REGISTER:
+        case LOGIN:
+            if (!action.error) {
+                window.localStorage.setItem(JWT_STORAGE_KEY, action.payload.user.token);
+                agent.setToken(action.payload.user.token);
+            }
+            break;
+        case LOGOUT:
+                window.localStorage.removeItem(JWT_STORAGE_KEY);
+                agent.setToken(null);
+            break;
+        case APP_LOAD:
+            if (action.error) {
+                window.localStorage.removeItem(JWT_STORAGE_KEY);
+                agent.setToken(null);
+                window.location.reload();
+            }
+            break;
+        default:
+            break;
     }
+    // if (action.type === REGISTER || action.type === LOGIN) {
+    //     if (!action.error) {
+    //         window.localStorage.setItem('jwt', action.payload.user.token);
+    //         agent.setToken(action.payload.user.token);
+    //     }
+    // } else if (action.type === LOGOUT) {
+    //     window.localStorage.setItem('jwt', '');
+    //     agent.setToken(null);
+    // }
 
     next(action);
 };
