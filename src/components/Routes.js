@@ -40,6 +40,7 @@ class Routes extends Component {
 
 
     shouldComponentUpdate(nextProps) {
+        debugger
         if (nextProps.redirectTo !== this.props.redirectTo) {
             this.props.history.push(nextProps.redirectTo);
             return true;

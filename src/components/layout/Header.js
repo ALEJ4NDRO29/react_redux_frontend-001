@@ -13,6 +13,55 @@ const mapDispatchToProps = dispatch => ({
         dispatch({ type: HEADER_LOADED }),
 });
 
+const NotUserLogged = props => {
+    if (!props.currentUser) {
+        return (
+            <header>
+                <Navbar bg="dark" variant="dark">
+                    <Nav defaultActiveKey="/home" as="ul">
+                        <div className="nav-item">
+                            <Link className="nav-link" to="/">Home</Link>
+                        </div>
+                        <div className="nav-item">
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </div>            
+                        <div className="nav-item">
+                            <Link className="nav-link" to="/register">Register</Link>
+                        </div>
+                    </Nav>
+                </Navbar>
+            </header>
+        );
+    }
+    return null;
+}
+
+const UserLogged = props => {
+    if (props.currentUser) {
+        var username = (props.currentUser) ? props.currentUser.username : " ";
+        return (
+            <header>
+                <Navbar bg="dark" variant="dark">
+                    <Nav defaultActiveKey="/home" as="ul">
+                        <div className="nav-item">
+                            <Link className="nav-link" to="/">Home</Link>
+                        </div>
+                        <Navbar.Collapse className="justify-content-end">
+                            <Navbar.Text>
+                            Signed in as: <a href="#login">{username}</a>
+                            </Navbar.Text>
+                        </Navbar.Collapse>
+                        <span className="text-right">
+                            {/* TODO : REDUX VALUE */}
+                        </span>
+                    </Nav>
+                </Navbar>
+            </header>   
+        );
+    }
+    return null;
+}
+
 class Header extends Component {
     constructor(props) {
         super(props)
@@ -27,32 +76,11 @@ class Header extends Component {
     }
 
     render() {
-        var username = (this.props.currentUser) ? this.props.currentUser.username : " ";
         return (
-            <header>
-                <Navbar bg="dark" variant="dark">
-                    <Nav defaultActiveKey="/home" as="ul">
-                            <div className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
-                            </div>
-                            <div className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </div>            
-                            <div className="nav-item">
-                                <Link className="nav-link" to="/register">Register</Link>
-                            </div>
-                        <Navbar.Collapse className="justify-content-end">
-                            <Navbar.Text>
-                            Signed in as: <a href="#login">{username}</a>
-                            </Navbar.Text>
-                        </Navbar.Collapse>
-                        <span className="text-right">
-                            {/* TODO : REDUX VALUE */}
-                            
-                        </span>
-                    </Nav>
-                </Navbar>
-            </header>
+            <div>
+                <NotUserLogged currentUser={this.props.currentUser}/>
+                <UserLogged currentUser={this.props.currentUser}/>
+            </div>
         );
     }
 
