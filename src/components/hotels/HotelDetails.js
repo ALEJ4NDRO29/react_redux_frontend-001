@@ -10,9 +10,7 @@ import { HOTEL_DETAILS_LOADED } from '../../constants';
 const Promise = global.Promise;
 
 const mapStateToProps = state => {
-    console.log('axant', state);
     return {
-      ...state,
       hotel: state.hotelList.hotel
     }
 
@@ -26,7 +24,8 @@ const mapDispatchToProps = dispatch => ({
 
 
 class HotelDetails extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
     this.props.onLoad(Promise.all([agent.Hotels.get(this.props.match.params.id)]));
   }
 
