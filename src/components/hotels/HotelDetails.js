@@ -10,45 +10,54 @@ import { HOTEL_DETAILS_LOADED } from '../../constants';
 const Promise = global.Promise;
 
 const mapStateToProps = state => {
-    return {
-      hotel: state.hotelList.hotel
-    }
+	return {
+		hotel: state.hotelList.hotel
+	};
 
 };
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: (payload) =>
-    dispatch({ type: HOTEL_DETAILS_LOADED, payload }),
+	onLoad: (payload) =>
+		dispatch({ type: HOTEL_DETAILS_LOADED, payload }),
 });
 
 
 
 class HotelDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props.onLoad(Promise.all([agent.Hotels.get(this.props.match.params.id)]));
-  }
+	constructor(props) {
+		super(props);
+		this.props.onLoad(Promise.all([agent.Hotels.get(this.props.match.params.id)]));
+	}
 
-  UNSAFE_componentWillUnmount() {
-    this.props.onUnload();
-  }
+	UNSAFE_componentWillUnmount() {
+		this.props.onUnload();
+	}
 
-  render() {
-    if(!this.props.hotel) {
-      return (
-        <div className="spinner-center">
-          <Spinner className="loadSpinner" animation="grow"/>
-        </div>
-      )
-    }
-    return (
-      <div>
-        <p>{this.props.hotel.name}</p>
-        <p>{this.props.hotel.stars}</p>
-        <p>{this.props.hotel.location}</p>
-      </div>
-    );
-  }
+	render() {
+		if (!this.props.hotel) {
+			return (
+				<div className="spinner-center">
+					<Spinner className="loadSpinner" animation="grow" />
+				</div>
+			);
+		}
+		return (
+			<div>
+				<p>{this.props.hotel.name}</p>
+				<p>{this.props.hotel.stars}</p>
+				<p>{this.props.hotel.location}</p>
+				{/* 
+					TODO: 
+						- Un usuario logueado podrá hacer comentarios
+							Ej: <CommentHotelIntput/> 
+								- (Solo visible si hay un usuario logueado)
+								- (Componente con campo de texto y botón de envío)
+						- Listado de comentarios que tiene este hotel
+							Ej: <CommentHotelList/>
+				*/}
+			</div>
+		);
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HotelDetails);

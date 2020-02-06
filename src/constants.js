@@ -1,5 +1,7 @@
-export const JWT_STORAGE_KEY = 'USER_TOKEN';
 export const API_URL = 'http://localhost:8000/api/v1';
+
+export const JWT_STORAGE_KEY = 'USER_TOKEN';
+
 export const HEADER_LOADED = 'HEADER_LOADED';
 export const ASYNC_START = 'ASYNC_START';
 export const ASYNC_END = 'ASYNC_END';

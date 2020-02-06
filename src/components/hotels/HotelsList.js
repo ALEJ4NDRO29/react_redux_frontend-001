@@ -6,7 +6,7 @@ import { Spinner } from 'react-bootstrap';
 const HotelList = props => {
   if (!props.hotels) {
     return (
-      <div>
+      <div className="spinner-center">
         <Spinner className="loadSpinner" animation="grow" />
       </div>
     );

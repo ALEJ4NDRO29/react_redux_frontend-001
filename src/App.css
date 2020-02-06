@@ -23,3 +23,11 @@
         width: 95vh;
     }
 }
+
+.in-block {
+    display: inline-block;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

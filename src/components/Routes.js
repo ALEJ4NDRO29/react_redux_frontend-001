@@ -39,7 +39,7 @@ class Routes extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        if (nextProps.redirectTo && nextProps.redirectTo !== this.props.redirectTo) {
+        if (nextProps.redirectTo && nextProps.redirectTo !== this.props.location.pathname) {
             this.props.history.push(nextProps.redirectTo);
             return true;
         }
