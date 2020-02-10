@@ -39,8 +39,8 @@ const Auth = {
 };
 
 const Hotels = {
-  getAll: () => requests.get('/hotels/hotels'),
-  get: id => requests.get(`/hotels/hotels/${id}`)
+  getAll: () => requests.get('/hotels'),
+  get: id => requests.get(`/hotels/${id}`)
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;

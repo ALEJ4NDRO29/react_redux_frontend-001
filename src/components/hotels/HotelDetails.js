@@ -1,4 +1,5 @@
 import React from 'react';
+import CommentHotelList from './CommentHotelList'
 // import Tags from './Tags';
 import agent from '../../agent';
 import { connect } from 'react-redux';
@@ -26,6 +27,7 @@ const mapDispatchToProps = dispatch => ({
 class HotelDetails extends React.Component {
 	constructor(props) {
 		super(props);
+		this.comment = {comments: [{"id": 1,"body": "asdadsaddsa"},{"id": 2, "body": "hola soc sanesga"}]}
 		this.props.onLoad(Promise.all([agent.Hotels.get(this.props.match.params.id)]));
 	}
 
@@ -41,11 +43,21 @@ class HotelDetails extends React.Component {
 				</div>
 			);
 		}
+
 		return (
 			<div>
 				<p>{this.props.hotel.name}</p>
 				<p>{this.props.hotel.stars}</p>
 				<p>{this.props.hotel.location}</p>
+				{
+					this.comment.comments.map((comment, index)  => {
+						return (
+							<div key={comment.id}>
+								<CommentHotelList comment={comment}/>
+							</div>
+						);
+					})
+				}
 				{/* 
 					TODO: 
 						- Un usuario logueado podrá hacer comentarios

@@ -21,13 +21,12 @@ const HotelList = props => {
   }
 
   return (
-
     <div>
       {
         props.hotels.results.map((hotel, index)  => {
           return (
             <div key={hotel.id}>
-              <HotelPreview  hotel={hotel}/>
+              <HotelPreview hotel={hotel}/>
             </div>
           );
         })
