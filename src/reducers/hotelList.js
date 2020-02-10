@@ -11,6 +11,7 @@ export default (state = {}, action) => {
 			return {
 				...state,
 				hotel: action.payload[0],
+				comments: action.payload[1]
 			};
 
 		default:

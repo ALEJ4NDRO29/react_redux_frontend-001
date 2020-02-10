@@ -12,7 +12,8 @@ const Promise = global.Promise;
 
 const mapStateToProps = state => {
 	return {
-		hotel: state.hotelList.hotel
+		hotel: state.hotelList.hotel,
+		comments: state.hotelList.comments
 	};
 
 };
@@ -27,8 +28,10 @@ const mapDispatchToProps = dispatch => ({
 class HotelDetails extends React.Component {
 	constructor(props) {
 		super(props);
-		this.comment = {comments: [{"id": 1,"body": "asdadsaddsa"},{"id": 2, "body": "hola soc sanesga"}]}
-		this.props.onLoad(Promise.all([agent.Hotels.get(this.props.match.params.id)]));
+		this.props.onLoad(Promise.all([
+			agent.Hotels.get(this.props.match.params.id), 
+			agent.Hotels.getComments(this.props.match.params.id)
+		]));
 	}
 
 	UNSAFE_componentWillUnmount() {
@@ -49,10 +52,12 @@ class HotelDetails extends React.Component {
 				<p>{this.props.hotel.name}</p>
 				<p>{this.props.hotel.stars}</p>
 				<p>{this.props.hotel.location}</p>
+				{console.log("comment", this.props)
+				}
 				{
-					this.comment.comments.map((comment, index)  => {
+					this.props.comments.results.map((comment, index)  => {
 						return (
-							<div key={comment.id}>
+							<div key={index}>
 								<CommentHotelList comment={comment}/>
 							</div>
 						);
