@@ -1,5 +1,5 @@
 import agent from './agent';
-import { APP_LOAD, JWT_STORAGE_KEY, LOGIN, LOGOUT, REGISTER } from './constants';
+import { APP_LOAD, JWT_STORAGE_KEY, LOGIN, LOGOUT, REGISTER, HOTEL_DETAILS_LOADED } from './constants';
 
 const promiseMiddleware = store => next => action => {
     if (isPromise(action.payload)) {
@@ -63,15 +63,6 @@ const localStorageMiddleware = store => next => action => {
         default:
             break;
     }
-    // if (action.type === REGISTER || action.type === LOGIN) {
-    //     if (!action.error) {
-    //         window.localStorage.setItem('jwt', action.payload.user.token);
-    //         agent.setToken(action.payload.user.token);
-    //     }
-    // } else if (action.type === LOGOUT) {
-    //     window.localStorage.setItem('jwt', '');
-    //     agent.setToken(null);
-    // }
 
     next(action);
 };

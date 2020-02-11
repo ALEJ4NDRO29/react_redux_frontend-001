@@ -7,11 +7,13 @@ import { Spinner } from 'react-bootstrap';
 
 import '../../App.css';
 import { HOTEL_DETAILS_LOADED } from '../../constants';
+import CommentHotelInput from './CommentHotelInput';
 
 const Promise = global.Promise;
 
 const mapStateToProps = state => {
 	return {
+		reloadComments: state.hotelList.reloadComments,
 		hotel: state.hotelList.hotel,
 		comments: state.hotelList.comments
 	};
@@ -34,9 +36,23 @@ class HotelDetails extends React.Component {
 		]));
 	}
 
-	UNSAFE_componentWillUnmount() {
-		this.props.onUnload();
+	shouldComponentUpdate(nextProps) {
+		if(this.props !== nextProps) {
+			if (nextProps.reloadComments) {
+				this.props.onLoad(Promise.all([
+					agent.Hotels.get(this.props.match.params.id),
+					agent.Hotels.getComments(this.props.match.params.id)
+				]));
+				return true;
+			}
+			return true;
+		}
+		return false;
 	}
+
+	// UNSAFE_componentWillUnmount() {
+	// 	this.props.onUnload();
+	// }
 
 	render() {
 		if (!this.props.hotel) {
@@ -52,8 +68,9 @@ class HotelDetails extends React.Component {
 				<p>{this.props.hotel.name}</p>
 				<p>{this.props.hotel.stars}</p>
 				<p>{this.props.hotel.location}</p>
-				{console.log("comment", this.props)
-				}
+
+				<CommentHotelInput hotelId={this.props.hotel.id}/>
+
 				{
 					this.props.comments.results.map((comment, index)  => {
 						return (
