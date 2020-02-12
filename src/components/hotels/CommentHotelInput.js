@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { INPUT_COMMENT_HOTEL_DETAILS_LOADED, HOTEL_COMMENT_CREATE } from "../../constants";
 import { Button, ButtonToolbar, Form } from "react-bootstrap";
 import agent from "../../agent";
+import { Link } from "react-router-dom";
 
 
 const mapStateToProps = state => ({
@@ -66,7 +67,7 @@ class CommentHotelInput extends React.Component {
                 </div>
             );
         }
-        return <span>Loggin for comment</span>;
+        return <Link to="/login">Login for comment</Link>;
 
     }
 }
