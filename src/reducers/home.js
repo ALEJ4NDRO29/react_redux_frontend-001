@@ -6,7 +6,7 @@ export default (state = {}, action) => {
     case HOME_PAGE_LOADED:
       return {
         ...state,
-            hotels: action.payload[0]
+        hotels: action.payload[0]
       };
     case HOME_PAGE_UNLOADED:
       return {};

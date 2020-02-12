@@ -38,10 +38,15 @@ class Routes extends Component {
         this.props.onLoad(token ? agent.Auth.current() : null, token);
     }
 
-    shouldComponentUpdate(nextProps) {
+    shouldComponentUpdate(nextProps){
         if (nextProps.redirectTo && nextProps.redirectTo !== this.props.location.pathname) {
-            this.props.history.push(nextProps.redirectTo);
-            return true;
+            try {
+                this.props.history.push(nextProps.redirectTo);
+                return true;
+            } finally {
+                console.log('on redirect');
+                this.props.onRedirect();
+            }
         }
         return false;
     }
