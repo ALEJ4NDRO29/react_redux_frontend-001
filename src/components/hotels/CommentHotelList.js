@@ -7,9 +7,7 @@ const CommentHotelList = props => {
     <Card>
       <Card.Body>
         <Card.Title>{props.comment.profile.username}</Card.Title>
-        <Card.Text>
-          {props.comment.body}
-        </Card.Text>
+          <pre>{props.comment.body}</pre>
       </Card.Body>
     </Card>
   );

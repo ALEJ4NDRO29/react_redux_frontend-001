@@ -1,22 +1,19 @@
-import { HOME_PAGE_LOADED, HOTEL_DETAILS_LOADED, INPUT_COMMENT_HOTEL_DETAILS_LOADED, HOTEL_COMMENT_CREATE } from '../constants';
+import { HOTEL_DETAILS_LOADED, INPUT_COMMENT_HOTEL_DETAILS_LOADED, HOTEL_COMMENT_CREATE } from '../constants';
 
 export default (state = {}, action) => {
 	switch (action.type) {
-		case HOME_PAGE_LOADED:
-			return {
-				...state,
-				hotels: action.payload[0],
-			};
 		case HOTEL_DETAILS_LOADED:
 			return {
 				...state,
 				hotel: action.payload[0],
-				comments: action.payload[1]
+				comments: action.payload[1],
+				reloadComments: false
 			};
 		case INPUT_COMMENT_HOTEL_DETAILS_LOADED:
 			return {
 				...state,
-				currentUser: action.payload ? action.payload.user : null
+				currentUser: action.payload ? action.payload.user : null,
+				reloadComments: false
 			}
 		case HOTEL_COMMENT_CREATE:
 			return {

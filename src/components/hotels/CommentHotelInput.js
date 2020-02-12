@@ -32,7 +32,7 @@ class CommentHotelInput extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    onComment(e) {
+    onComment() {
         if (this.state.comment !== '') {
             var hotelId = this.props.hotelId;
             var comment = this.state.comment;
@@ -42,9 +42,11 @@ class CommentHotelInput extends React.Component {
                     "body": comment
                 }
             }
+   
             console.log('tosend', toSend);
             
             this.props.onComment(agent.Hotels.postComment(hotelId, toSend));
+            this.myFormRef.reset();
         }
     }
 
@@ -53,7 +55,7 @@ class CommentHotelInput extends React.Component {
             // var username = (props.currentUser) ? props.currentUser.username : "";
             return (
                 <div>
-                    <Form>
+                    <Form ref={(el) => this.myFormRef = el}>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Control as="textarea" name="comment" onChange={this.handleChange} placeholder="Comment..." rows="3" />
                         </Form.Group>

@@ -1,5 +1,5 @@
 import agent from './agent';
-import { APP_LOAD, JWT_STORAGE_KEY, LOGIN, LOGOUT, REGISTER, HOTEL_DETAILS_LOADED } from './constants';
+import { APP_LOAD, JWT_STORAGE_KEY, LOGIN, LOGOUT, REGISTER } from './constants';
 
 const promiseMiddleware = store => next => action => {
     if (isPromise(action.payload)) {
