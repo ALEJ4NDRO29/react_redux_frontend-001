@@ -1,4 +1,4 @@
-import { HOTEL_COMMENT_CREATE, HOTEL_DETAILS_LOADED, INPUT_COMMENT_HOTEL_DETAILS_LOADED } from '../constants';
+import { HOTEL_DETAILS_LOADED, INPUT_COMMENT_HOTEL_DETAILS_LOADED, HOTEL_COMMENT_CREATE } from '../constants';
 
 export default (state = {}, action) => {
 	switch (action.type) {
@@ -6,12 +6,14 @@ export default (state = {}, action) => {
 			return {
 				...state,
 				hotel: action.payload[0],
-				comments: action.payload[1]
+				comments: action.payload[1],
+				reloadComments: false
 			};
 		case INPUT_COMMENT_HOTEL_DETAILS_LOADED:
 			return {
 				...state,
-				currentUser: action.payload ? action.payload.user : null
+				currentUser: action.payload ? action.payload.user : null,
+				reloadComments: false
 			}
 		case HOTEL_COMMENT_CREATE:
 			return {
