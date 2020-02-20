@@ -1,3 +1,5 @@
-# 2DAW React Redux Frontend Proyect
-- Jose Alejandro
-- Juan Antonio
+# 2DAW Reactive JEI
+
+- [Juanan](https://github.com/juanantoniogisbert)
+- [Alejandro](https://github.com/ALEJ4NDRO29/)
+
